@@ -12,6 +12,14 @@ Player::Player() : p_Health{ 100 }, p_Damage{ 5 }, p_Xp{ 0 }
 
 }
 
+Player::Player(string name, int p_hp, int p_dmg, int p_xp)
+{
+	p_name = name;
+	p_Damage = p_dmg;
+	p_Health = p_hp;
+	p_Xp = p_xp;
+}
+
 // Return Player's Current Health Points
 int Player::getHealth()
 {
@@ -80,8 +88,7 @@ int Player::atkChoice(char atk)
 	}
 	case 'e' : case 'E':
 	{
-		int b = 10;
-		p_Damage = ++b;
+		Player::buffDamage();
 		break;
 	}
 	case 'r' : case 'R':
@@ -103,4 +110,13 @@ int Player::takeDamage()
 	Rounds r;
 	p_Health = p_Health - r.getEnemyDmg();
 	return p_Health;
+}
+
+int Player::buffDamage()
+{
+	int buff = 10;
+	p_Damage = p_Damage + buff;
+	return p_Damage;
+
+	cout << "Attack Damage Increased by 10." << endl;
 }

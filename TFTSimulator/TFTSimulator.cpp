@@ -8,14 +8,9 @@ using namespace std;
 
 int main()
 {
-    int min{ 1 };
-    int max{ 25 };
     string PlayerName;
     char atkChoice = ' ';
-    int playerHealth, enemyHealth;
     vector <string> enemyName{ "Sett", "Gwen", "Lux", "Samira" };
-    Player p1;
-    Rounds r1;
 
     // Welcome Player 
     cout << "Welcome to League of Legends Arena Simulator!" << "\n" <<
@@ -24,8 +19,9 @@ int main()
     // Obtain Player Name   
     cout << "Please enter your name: " << "\n";
     cin >> PlayerName;
-    
-    cout << "\n" << "Alright " + PlayerName + ", Are you ready to start?" << "\n" << "Press Enter to continue..." << "\n";
+    Player *User = new Player(PlayerName, 100, 5, 0);
+
+    cout << "\n" << "Alright " + PlayerName + ", Are you ready to start?" << "\n";
     cin.ignore();
 
     // Create Object - Sett
@@ -34,53 +30,55 @@ int main()
 
     cout << "Your first opponent will be..." << "\n" << enemyName[0] << "!" << "\n" << 
          "\n" << "Get ready, I hope you have some extreme luck!" << "\n";
+    cout << "Press Enter to continue..." << "\n";
     cin.ignore();
     
     
     do
     {
-        p1.atkChoice(atkChoice);
+        User->atkChoice(atkChoice);
 
         if (atkChoice == 'q' || 'Q')
         {
-            cout << PlayerName + " hit " << Sett->getEnemyName() << " for " << p1.getAtk() << " Hit Points!" << "\n";
+            cout << PlayerName + " hit " << Sett->getEnemyName() << " for " << User->getAtk() << " Hit Points!" << "\n";
             Sett->takePlayerDmg();
             cout << "=============================" << endl;
-            cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << p1.getHealth() << " Health points." << endl;
+            cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << User->getHealth() << " Health points." << endl;
             cout << Sett->getEnemyName() << " current health points is at : " << Sett->getEnemyHP() << "." << "\n";
 
         }
         else if (atkChoice == 'w' || 'W')
         {
-            cout << PlayerName + " Healed up and their health is now " << p1.getHealth() << endl;
+            cout << PlayerName + " Healed up and their health is now " << User->getHealth() << endl;
             Sett->takePlayerDmg();
             cout << "=========================" << "\n";
-            cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << p1.getHealth() << " Health points." << endl;
+            cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << User->getHealth() << " Health points." << endl;
             cout << Sett->getEnemyName() << " current health points is at : " << Sett->getEnemyHP() << "." << "\n";
             
         }
         else if (atkChoice == 'e' || 'E')
         {
+            User->getAtk();
             cout << PlayerName + " has amplified their next attack!" << endl;
-            cout << PlayerName + " damage is now " << p1.getAtk() + ". " << "\n";
+            cout << PlayerName + " damage is now " << User->getAtk() + ". " << "\n";
             Sett->takePlayerDmg();
             cout << "=========================" << "\n";
-            cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << p1.getHealth() << " Health points." << endl;
+            cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << User->getHealth() << " Health points." << endl;
             cout << Sett->getEnemyName() << " current health points is at : " << Sett->getEnemyHP() << "." << "\n";
             
         }
         else if (atkChoice == 'r' || 'R')
         {
-            cout << PlayerName + " has unleashed their ultimate attack, damaging " << Sett->getEnemyName() << " for " << p1.getAtk() << ". " << "\n";
+            cout << PlayerName + " has unleashed their ultimate attack, damaging " << Sett->getEnemyName() << " for " << User->getAtk() << ". " << "\n";
             Sett->takePlayerDmg();
             cout << "=========================" << "\n";
-            cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << p1.getHealth() << " Health points." << endl;
+            cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << User->getHealth() << " Health points." << endl;
             cout << Sett->getEnemyName() << " current health points is at : " << Sett->getEnemyHP() << "." << "\n";
             
         }
 
         /*cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << p1.getHealth() << " points." << endl;*/
-        p1.takeDamage();
+        User->takeDamage();
         cin.ignore();
 
 

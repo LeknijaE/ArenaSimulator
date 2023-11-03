@@ -104,36 +104,3 @@ int Player::takeDamage()
 	p_Health = p_Health - r.getEnemyDmg();
 	return p_Health;
 }
-//int Player::GetAtkPoints()
-//{
-//
-//	return p_atkPoints;
-//}
-//
-//int Player::GetHp(int &p_lifePoints)
-//{
-//	return p_lifePoints;
-//}
-//
-//void Player::SetAtkPoints(int &atkPoints)
-//{
-//	int min{ 1 };
-//	int max{ 25 };
-//	atkPoints = rand() % max + min;
-//	p_atkPoints = atkPoints;
-//}
-//
-//void Player::SetHthPoints(int &hpPoints)
-//{
-//	hpPoints = 100;
-//	p_lifePoints = hpPoints;
-//}
-//
-//int Player::takeDamage()
-//{
-//	Rounds r;
-//	int e_Damage = r.GetEDamage();
-//	p_lifePoints = p_lifePoints - e_Damage;
-//
-//	return p_lifePoints;
-//}

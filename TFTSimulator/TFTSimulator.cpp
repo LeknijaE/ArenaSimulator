@@ -18,13 +18,13 @@ int main()
     Rounds r1;
 
     // Welcome Player 
-    cout << "Welcome to Teamfight Tactics Health RNG!" << "\n" <<
+    cout << "Welcome to League of Legends Arena Simulator!" << "\n" <<
         "Your health will start at 100 Life Points. " << "\n";
      
     // Obtain Player Name   
     cout << "Please enter your name: " << "\n";
     cin >> PlayerName;
-
+    
     cout << "\n" << "Alright " + PlayerName + ", Are you ready to start?" << "\n" << "Press Enter to continue..." << "\n";
     cin.ignore();
 
@@ -93,9 +93,9 @@ int main()
     cout << "Congratz you defeated your first opponent! Are you ready to go to the next round? " << endl;
     cin.ignore();
 
-    //Rounds* Gwen = new Rounds("Gwen", 35, 30);
+    Rounds* Gwen = new Rounds("Gwen", 35, 30);
 
-    //delete Gwen;
+    delete Gwen;
   
 
     

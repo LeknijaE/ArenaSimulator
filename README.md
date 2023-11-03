@@ -1,4 +1,4 @@
-# TFTSimulator
+# Arena Simulator
 
 This is a Arena Mini Game mock up based on League of Legend's Soul Arena event.
 

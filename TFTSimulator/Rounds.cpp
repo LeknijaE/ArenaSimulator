@@ -10,10 +10,11 @@ Rounds::Rounds() : e_name{ " " }, e_Health { 5 }, e_Damage{ 5 }, XP{ 10 }
 
 }
 
-Rounds::Rounds(string name, int e_hp, int e_xp)
+Rounds::Rounds(string name, int e_hp, int e_dmg, int e_xp)
 {
 	e_name = name;
 	e_Health = e_hp;
+	e_Damage = e_dmg;
 	XP = e_xp;
 }
 
@@ -43,9 +44,6 @@ void Rounds::setEnemyName(std::string enemy_name)
 // Get Enemy Attack Damage Points
 int Rounds::getEnemyDmg()
 {
-	int min{ 1 };
-	int max{ 25 };
-	e_Damage = rand() % max + min + 1;
 	return e_Damage;
 }
 
@@ -61,6 +59,7 @@ bool Rounds::enemyAlive()
 
 }
 
+// Take damage from Player & Return Health
 int Rounds::takePlayerDmg()
 {
 	Player p;

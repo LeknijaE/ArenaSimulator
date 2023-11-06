@@ -14,13 +14,21 @@ private:
 public:
 
 	Rounds();
-	Rounds(std::string e_name, int e_hp, int e_xp);
+	Rounds(std::string e_name, int e_hp, int e_dmg, int e_xp);
+
+	// Setters
+	void setEnemyName(std::string enemy_name);
+
+	// Getters
 	int getXP();
 	int getEnemyHP();
-	void setEnemyName(std::string enemy_name);
-	int getEnemyDmg();
-	int takePlayerDmg();
 	std::string getEnemyName();
+	int getEnemyDmg();
+
+
+	int takePlayerDmg();
+	
+	// Status Check
 	bool enemyAlive();
 
 	// Destructor

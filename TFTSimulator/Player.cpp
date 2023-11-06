@@ -12,11 +12,12 @@ Player::Player() : p_Health{ 100 }, p_Damage{ 5 }, p_Xp{ 0 }
 
 }
 
-Player::Player(string name, int p_hp, int p_dmg, int p_xp)
+Player::Player(string name, int p_hp, int p_dmg, int p_xp, int p_Enr)
 {
 	p_name = name;
 	p_Damage = p_dmg;
 	p_Health = p_hp;
+	p_Energy = p_Enr;
 	p_Xp = p_xp;
 }
 
@@ -33,17 +34,22 @@ int Player::getAtk()
 
 }
 
+// Return Player's Current Energy Points
+int Player::getEnergy()
+{
+	return p_Energy;
+	cout << "Current Energy: " << p_Energy << "." << "\n";
+}
+
+
 // Check if player is still alive
 bool Player::playerAlive()
 {
-	if (p_Health >= 0)
+	if (p_Health != 0)
 	{
 		return true;
 	}
-
-	std::cout << "You died, try again." << endl;
 	return false;
-
 }
 
 // Check if Player defeated enemy
@@ -60,8 +66,12 @@ bool Player::defeatEnemy()
 }
 
 // Allow Player to choose attack method
-int Player::atkChoice(char atk)
+char Player::atkChoice()
 {
+	Rounds r;
+
+	char atk;
+
 	cout << "\n" << "=============================" << endl;
 	cout << "Choose your attack : " << endl; 
 	cout << "=============================" << endl;
@@ -77,7 +87,8 @@ int Player::atkChoice(char atk)
 	case 'q': case 'Q':
 	{
 		Player::getAtk();
-
+		Player::getEnergy();
+		
 		break;
 	}
 	case 'w': case 'W':
@@ -89,11 +100,19 @@ int Player::atkChoice(char atk)
 	case 'e' : case 'E':
 	{
 		Player::buffDamage();
+		Player::getAtk();
 		break;
 	}
 	case 'r' : case 'R':
 	{
+		if (p_Energy != 4)
+		{
+			cout << "Not enough Energy." << "\n";
+			
+		}
+		else
 		p_Damage = 20;
+		p_Energy = p_Energy - 4;
 		break;
 	}
 	default:
@@ -104,7 +123,16 @@ int Player::atkChoice(char atk)
 	return atk;
 }
 
+// Call during attack (Q)
+int Player::gainEnergy()
+{
+	int obtainEnergy = 1;
+	p_Energy = p_Energy + obtainEnergy;
+	return p_Energy;
+	
+}
 
+// Check how much damage player took & Return Current Health
 int Player::takeDamage()
 {
 	Rounds r;
@@ -112,11 +140,18 @@ int Player::takeDamage()
 	return p_Health;
 }
 
+// 
 int Player::buffDamage()
 {
-	int buff = 10;
+	int buff = 3;
 	p_Damage = p_Damage + buff;
 	return p_Damage;
+}
 
-	cout << "Attack Damage Increased by 10." << endl;
+Player::~Player()
+{
+	if (p_Health == 0)
+	{
+		std::cout << "You died, try again." << endl;
+	}
 }

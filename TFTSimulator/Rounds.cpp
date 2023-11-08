@@ -41,6 +41,7 @@ void Rounds::setEnemyName(std::string enemy_name)
 {
 	e_name = enemy_name;
 }
+
 // Get Enemy Attack Damage Points
 int Rounds::getEnemyDmg()
 {
@@ -52,7 +53,7 @@ bool Rounds::enemyAlive()
 {
 	if (e_Health != 0)
 	{
-		
+		cout << e_name << "'s current health points is at : " << e_Health << "." << "\n";
 		return true;
 	}
 	return false;
@@ -67,9 +68,19 @@ int Rounds::takePlayerDmg()
 	return e_Health;
 }
 
+int Rounds::atkPlayer()
+{
+	Player p;
+
+	Rounds::getEnemyDmg();
+	p.takeDamage();
+
+	return p.getHealth();
+}
+
 Rounds::~Rounds()
 {
-	if (e_Health == 0)
+	if (Rounds::enemyAlive() != true)
 	{
 		std::cout << "\n" << "Enemy Eliminated." << endl;
 	}

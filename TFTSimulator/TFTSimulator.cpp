@@ -36,62 +36,17 @@ int main()
     // Loop until Player's Health is 0 or Enemy is Defeated
         do
         {
-            atkChoice = User->atkChoice();
+            User->atkChoice();
 
-            if (atkChoice == 'q' || atkChoice == 'q')
-            {
-                cout << PlayerName + " hit " << Sett->getEnemyName() << " for " << User->getAtk() << " Hit Points!" << "\n";
-                Sett->takePlayerDmg();
-                User->gainEnergy();
-                cout << "Current Energy : " << to_string(User->getEnergy()) << "\n";
-
-                cout << "=============================" << endl;
-
-                cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << User->getHealth() << " Health points." << endl;
-                cout << Sett->getEnemyName() << " current health points is at : " << Sett->getEnemyHP() << "." << "\n";
-
-
-            }
-            else if (atkChoice == 'w' || atkChoice == 'w')
-            {
-                cout << PlayerName + " Healed up and their health is now " << User->getHealth() << endl;
-
-                cout << "=========================" << "\n";
-
-                cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << User->getHealth() << " Health points." << endl;
-                cout << Sett->getEnemyName() << " current health points is at : " << Sett->getEnemyHP() << "." << "\n";
-
-
-            }
-            else if (atkChoice == 'e' || atkChoice == 'e')
-            {
-                User->buffDamage();
-                cout << PlayerName + " has amplified their next attack!" << endl;
-                cout << PlayerName + " damage is now " << to_string(User->getAtk()) + ". " << "\n";
-
-                cout << "=========================" << "\n";
-
-                cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << User->getHealth() << " Health points." << endl;
-                cout << Sett->getEnemyName() << " current health points is at : " << Sett->getEnemyHP() << "." << "\n";
-
-
-            }
-            else if (atkChoice == 'r' || atkChoice == 'r')
-            {
-
-                    cout << PlayerName + " has unleashed their ultimate attack, damaging " << Sett->getEnemyName() << " for " << User->getAtk() << ". " << "\n";
-                    User->getAtk();
-                    Sett->takePlayerDmg();
-
-                    cout << "=========================" << "\n";
-
-                    cout << Sett->getEnemyName() + " attacks " << PlayerName + " for " << Sett->getEnemyDmg() << " leaving " << PlayerName << " with " << User->getHealth() << " Health points." << endl;
-                    cout << Sett->getEnemyName() << " current health points is at : " << Sett->getEnemyHP() << "." << "\n";
-              
-            }
+            Sett->takePlayerDmg();
             
+            Sett->atkPlayer();
+
             User->takeDamage();
-            cin.ignore();
+
+            // Show Status Update of Player Health
+            User->playerAlive();
+
 
 
         } while (Sett->enemyAlive() != false);

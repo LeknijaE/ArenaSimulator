@@ -47,6 +47,9 @@ bool Player::playerAlive()
 {
 	if (p_Health != 0)
 	{
+		cout << "=============================" << endl;
+		cout << p_name << "'s Current Health Points: " << p_Health << ". " << endl;
+
 		return true;
 	}
 	return false;
@@ -88,31 +91,50 @@ char Player::atkChoice()
 	{
 		Player::getAtk();
 		Player::getEnergy();
-		
+
+		cout << p_name + " hit " << r.getEnemyName() << " for " << p_Damage << " Hit Points!" << "\n";
+		cout << "=========================" << "\n";
+
+		r.takePlayerDmg();
+
 		break;
 	}
 	case 'w': case 'W':
 	{
 		const int heal = 10;
 		p_Health = p_Health + heal;
+
+		cout << p_name + " Healed up and their health is now " << p_Health << endl;
+		cout << "=========================" << "\n";
+
 		break;
 	}
 	case 'e' : case 'E':
 	{
 		Player::buffDamage();
 		Player::getAtk();
+
+		cout << p_name + " has amplified their next attack!" << endl;
+		cout << p_name + " damage is now " << p_Damage + ". " << "\n";
+
+		cout << "=========================" << "\n";
+
 		break;
 	}
 	case 'r' : case 'R':
 	{
-		if (p_Energy != 4)
+		if (p_Energy != 4 || p_Energy <= 0)
 		{
 			cout << "Not enough Energy." << "\n";
-			
+			cout << "=========================" << "\n";
 		}
 		else
+
 		p_Damage = 20;
 		p_Energy = p_Energy - 4;
+		cout << p_name + " has unleashed their ultimate attack, damaging " << r.getEnemyName() << " for " << p_Damage << ". " << "\n";
+		cout << "=========================" << "\n";
+
 		break;
 	}
 	default:
@@ -137,14 +159,18 @@ int Player::takeDamage()
 {
 	Rounds r;
 	p_Health = p_Health - r.getEnemyDmg();
+	cout << r.getEnemyName() + " attacks for " << r.getEnemyDmg() << " leaving you with " << p_Health << " Health points." << endl;
 	return p_Health;
 }
 
-// 
+// Increase Player Damage (for Limited Turns)
 int Player::buffDamage()
 {
-	int buff = 3;
-	p_Damage = p_Damage + buff;
+	if (p_Damage <= 5)
+	{
+		const int buff = 3;
+		p_Damage = p_Damage + buff;
+	}
 	return p_Damage;
 }
 

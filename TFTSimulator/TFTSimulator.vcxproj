@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Arena.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Rounds.cpp" />
     <ClCompile Include="TFTSimulator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Arena.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Rounds.h" />
   </ItemGroup>

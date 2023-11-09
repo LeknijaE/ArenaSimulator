@@ -52,6 +52,7 @@ bool Player::playerAlive()
 
 		return true;
 	}
+
 	return false;
 }
 
@@ -84,6 +85,7 @@ char Player::atkChoice()
 	cout << "R - Ultimate" << endl;
 	cout << "=============================" << endl;
 	cin >> atk;
+	cout << "=============================" << "\n";
 
 	switch (atk)
 	{
@@ -92,8 +94,8 @@ char Player::atkChoice()
 		Player::getAtk();
 		Player::getEnergy();
 
-		cout << p_name + " hit " << r.getEnemyName() << " for " << p_Damage << " Hit Points!" << "\n";
-		cout << "=========================" << "\n";
+		cout << p_name + " hit the opponent for " << p_Damage << " Hit Points!" << "\n";
+		cout << "============================" << "\n";
 
 		r.takePlayerDmg();
 
@@ -112,12 +114,12 @@ char Player::atkChoice()
 	case 'e' : case 'E':
 	{
 		Player::buffDamage();
-		Player::getAtk();
 
 		cout << p_name + " has amplified their next attack!" << endl;
-		cout << p_name + " damage is now " << p_Damage + ". " << "\n";
+		/*cout << p_name + " damage is now " << p_Damage + ". " << "\n";*/
 
 		cout << "=========================" << "\n";
+		Player::getAtk();
 
 		break;
 	}
@@ -159,7 +161,7 @@ int Player::takeDamage()
 {
 	Rounds r;
 	p_Health = p_Health - r.getEnemyDmg();
-	cout << r.getEnemyName() + " attacks for " << r.getEnemyDmg() << " leaving you with " << p_Health << " Health points." << endl;
+	cout << p_name + " was damaged for " << r.getEnemyDmg() << " leaving their health at : " << p_Health << " HP." << endl;
 	return p_Health;
 }
 
@@ -170,14 +172,24 @@ int Player::buffDamage()
 	{
 		const int buff = 3;
 		p_Damage = p_Damage + buff;
+		return p_Damage;
 	}
+	else
 	return p_Damage;
+}
+
+bool Player::playerDefeat()
+{
+	if (Player::playerAlive() == false)
+	{
+		cout << "You died, try again." << endl;
+		return true;
+	}
+	else
+		return false;
 }
 
 Player::~Player()
 {
-	if (p_Health == 0)
-	{
-		std::cout << "You died, try again." << endl;
-	}
+	
 }

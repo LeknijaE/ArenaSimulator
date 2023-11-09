@@ -25,8 +25,8 @@ int main()
     cin.ignore();
 
     // Create Object - Sett
-    Rounds *Sett = new Rounds("Sett", 50, 5, 15);
-    Sett->setEnemyName("Sett");
+    Rounds *Sett = new Rounds(enemyName[0], 50, 5, 15);
+    //Sett->setEnemyName("Sett");
 
     cout << "Your first opponent will be..." << "\n" << enemyName[0] << "!" << "\n" << 
          "\n" << "Get ready, I hope you have some extreme luck!" << "\n";
@@ -38,23 +38,34 @@ int main()
         {
             User->atkChoice();
 
+            // Enemy takes in Damage & Returns Enemy Health
             Sett->takePlayerDmg();
             
+            // Enemy Attacks Player & Returns Player Health
             Sett->atkPlayer();
 
+            // Adjust Player health value based on damage taken
             User->takeDamage();
 
-            // Show Status Update of Player Health
-            User->playerAlive();
-
+            // Check if Player Health is 0 or less & End if so
+            if (User->playerDefeat() == true)
+            {
+                break;
+            }
+            else
+                continue;
 
 
         } while (Sett->enemyAlive() != false);
 
-        delete Sett;
+        if (Sett->enemyDefeat() == true)
+        {
+            delete Sett;
 
-        cout << "Congratulations you defeated your first opponent! Are you ready to go to the next round? " << endl;
-        cin.ignore();
+            cout << "Congratulations you defeated your first opponent! Are you ready to go to the next round? " << endl;
+            cin.ignore();
+        }
+      
 
         /*Rounds *Gwen = new Rounds("Gwen", 35, 30);
 

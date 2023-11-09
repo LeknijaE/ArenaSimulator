@@ -28,6 +28,8 @@ public:
 
 	int takePlayerDmg();
 	int atkPlayer();
+
+	bool enemyDefeat();
 	
 	// Status Check
 	bool enemyAlive();

@@ -20,6 +20,7 @@ public:
 	// Status Check
 	bool playerAlive();
 	bool defeatEnemy();
+	bool playerDefeat();
 
 	// Player Choice
 	char atkChoice();
@@ -31,6 +32,8 @@ public:
 	int gainEnergy();
 	int takeDamage();
 	int buffDamage();
+
+	
 
 	// Destructor
 	~Player();

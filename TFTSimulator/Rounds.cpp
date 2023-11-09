@@ -73,16 +73,26 @@ int Rounds::atkPlayer()
 	Player p;
 
 	Rounds::getEnemyDmg();
-	p.takeDamage();
 
 	return p.getHealth();
 }
 
+bool Rounds::enemyDefeat()
+{
+	if (Rounds::enemyAlive() == false)
+	{
+		return true;
+	}
+	else
+		return false;
+}
+
 Rounds::~Rounds()
 {
-	if (Rounds::enemyAlive() != true)
+	if (e_Health == 0)
 	{
-		std::cout << "\n" << "Enemy Eliminated." << endl;
+		// Deconstructor called before Enemy Attack
+		
 	}
 	
 }

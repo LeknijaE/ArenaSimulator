@@ -26,7 +26,7 @@ public:
 	int getEnemyDmg();
 
 
-	int takePlayerDmg();
+	int takePlayerDmg(int);
 	int atkPlayer();
 
 	bool enemyDefeat();

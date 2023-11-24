@@ -37,8 +37,10 @@ int Player::getAtk()
 // Return Player's Current Energy Points
 int Player::getEnergy()
 {
-	return p_Energy;
 	cout << "Current Energy: " << p_Energy << "." << "\n";
+	cout << "-----------------------------" << endl;
+	return p_Energy;
+	
 }
 
 
@@ -92,12 +94,13 @@ char Player::atkChoice()
 	case 'q': case 'Q':
 	{
 		Player::getAtk();
+		Player::gainEnergy();
 		Player::getEnergy();
 
 		cout << p_name + " hit the opponent for " << p_Damage << " Hit Points!" << "\n";
 		cout << "============================" << "\n";
 
-		r.takePlayerDmg();
+		//r.takePlayerDmg(); //MAYBE THIS IS THE PROBLEM?
 
 		break;
 	}
@@ -125,17 +128,24 @@ char Player::atkChoice()
 	}
 	case 'r' : case 'R':
 	{
-		if (p_Energy != 4 || p_Energy <= 0)
+		if (p_Energy != 4 || p_Energy < 4)
 		{
 			cout << "Not enough Energy." << "\n";
 			cout << "=========================" << "\n";
 		}
-		else
+		else if (p_Energy >= 4)
+		{
+			p_Damage = 20;
+			Player::getAtk();
 
-		p_Damage = 20;
-		p_Energy = p_Energy - 4;
-		cout << p_name + " has unleashed their ultimate attack, damaging " << r.getEnemyName() << " for " << p_Damage << ". " << "\n";
-		cout << "=========================" << "\n";
+			p_Energy = p_Energy - 4;
+			Player::getEnergy();
+
+
+			cout << p_name + " has unleashed their ultimate attack, damaging their opponent for " << p_Damage << ". " << "\n";
+			cout << "=========================" << "\n";
+		}
+
 
 		break;
 	}
@@ -171,7 +181,7 @@ int Player::buffDamage()
 	if (p_Damage <= 5)
 	{
 		const int buff = 3;
-		p_Damage = p_Damage + buff;
+		p_Damage += buff;
 		return p_Damage;
 	}
 	else

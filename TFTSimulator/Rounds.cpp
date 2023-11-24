@@ -61,10 +61,9 @@ bool Rounds::enemyAlive()
 }
 
 // Take damage from Player & Return Health
-int Rounds::takePlayerDmg()
+int Rounds::takePlayerDmg(int damage)
 {
-	Player p;
-	e_Health = e_Health - p.getAtk();
+	e_Health -= damage;
 	return e_Health;
 }
 

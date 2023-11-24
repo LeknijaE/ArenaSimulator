@@ -36,10 +36,19 @@ int main()
     // Loop until Player's Health is 0 or Enemy is Defeated
         do
         {
-            User->atkChoice();
+           atkChoice = User->atkChoice();
 
             // Enemy takes in Damage & Returns Enemy Health
-            Sett->takePlayerDmg();
+            if (atkChoice == 'q')
+            {
+                
+                Sett->takePlayerDmg(User->getAtk());
+            }
+            else if (atkChoice == 'r' || User->getEnergy() >= 4)
+            {
+                Sett->takePlayerDmg(User->getAtk());
+            }
+                
             
             // Enemy Attacks Player & Returns Player Health
             Sett->atkPlayer();
@@ -54,7 +63,7 @@ int main()
             }
             else
                 continue;
-
+           
 
         } while (Sett->enemyAlive() != false);
 
@@ -62,6 +71,7 @@ int main()
         {
             delete Sett;
 
+            cout << endl;
             cout << "Congratulations you defeated your first opponent! Are you ready to go to the next round? " << endl;
             cin.ignore();
         }
